@@ -99,14 +99,19 @@ button{
 .navbar{
 
     height:100px;
+
     width:90%;
     max-width:1400px;
 
     margin:auto;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
+    flex-wrap:nowrap;
 
 }
 
@@ -124,15 +129,17 @@ button{
 /* =========================
    NAVIGATION
 ========================= */
-
 .nav-links{
 
     display:flex;
     align-items:center;
-    gap:45px;
+
     list-style:none;
 
+    gap:35px;
+
 }
+
 
 .nav-links>li{
 
@@ -312,28 +319,137 @@ button{
     padding-left:30px;
 
 }
+/* ==========================================
+   STAFF SUBMENU
+========================================== */
 
+.submenu{
+    position:relative;
+}
+
+.submenu-btn{
+
+    width:100%;
+    background:none;
+    border:none;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:17px 22px;
+
+    color:var(--dark-blue);
+
+    font-size:.92rem;
+
+    font-family:var(--sans);
+
+    transition:.3s;
+
+}
+
+.submenu-btn span{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+}
+
+.submenu-btn i:first-child{
+
+    width:22px;
+    color:var(--blue);
+
+}
+
+.submenu-btn:hover{
+
+    background:#eef9fc;
+
+}
+
+.submenu-links{
+
+    display:none;
+
+    background:#f8fdff;
+
+    border-top:1px solid rgba(0,0,0,.05);
+
+}
+
+.submenu.active .submenu-links{
+
+    display:block;
+
+}
+
+.submenu-links a{
+
+    padding:14px 55px;
+
+    font-size:.88rem;
+
+    color:var(--gray);
+
+}
+
+.submenu-links a:hover{
+
+    background:white;
+
+    color:var(--blue);
+
+    padding-left:65px;
+
+}
+
+.submenu.active .fa-chevron-right{
+
+    transform:rotate(90deg);
+
+}
+/* =========================
+ LOGO
+========================= */
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    font-family:var(--serif);
+    font-size:3rem;
+
+    color:white;
+
+    letter-spacing:2px;
+
+    white-space:nowrap;
+
+}
+
+.logo-img{
+
+    width:60px;
+    height:60px;
+
+    object-fit:contain;
+
+    flex-shrink:0;
+
+}
 
 
 /* =========================
    BOOK NOW BUTTON
 ========================= */
 
-.nav-btn{
 
-    background:white;
-
-    color:var(--dark-blue);
-
-    padding:14px 32px;
-
-    border-radius:40px;
-
-    font-weight:600;
-
-    transition:.3s;
-
-}
 
 .nav-btn:hover{
 
@@ -763,13 +879,10 @@ button{
 }
 
 .experience-grid{
-
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:35px;
-
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:32px;
 }
-
 .experience-card{
 
     background:white;
@@ -795,10 +908,9 @@ button{
 }
 
 .experience-card img{
-
-    height:400px;
-    transition:.5s;
-
+    width:100%;
+    height:260px;
+    object-fit:cover;
 }
 
 .experience-card:hover img{
@@ -962,6 +1074,125 @@ button{
     background:var(--blue);
 
     color:white;
+
+}
+/* ==========================================
+   VESSEL SECTION
+========================================== */
+
+.vessel{
+
+    padding:120px 0;
+
+    background:linear-gradient(
+        to bottom,
+        #ffffff,
+        #f7f9fb
+    );
+
+}
+
+.vessel .container{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+.vessel-image{
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.15);
+
+}
+
+.vessel-image img{
+
+    height:600px;
+
+    transition:.5s;
+
+}
+
+.vessel-image:hover img{
+
+    transform:scale(1.05);
+
+}
+
+.vessel-details h2{
+
+    font-family:var(--serif);
+
+    font-size:3.4rem;
+
+    color:var(--dark-blue);
+
+    margin-bottom:20px;
+
+}
+
+.vessel-details p{
+
+    color:var(--gray);
+
+    line-height:1.9;
+
+    margin-bottom:35px;
+
+}
+
+.vessel-specs{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+}
+
+.vessel-spec{
+
+    background:white;
+
+    padding:24px;
+
+    border-radius:18px;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.vessel-spec span{
+
+    display:block;
+
+    font-size:.8rem;
+
+    letter-spacing:2px;
+
+    color:var(--blue);
+
+    margin-bottom:8px;
+
+}
+
+.vessel-spec h3{
+
+    font-size:1.1rem;
+
+    color:var(--dark-blue);
 
 }
 /* =========================
@@ -1283,6 +1514,11 @@ footer{
     grid-template-columns:1fr;
 
 }
+.vessel .container{
+
+    grid-template-columns:1fr;
+
+}
 
 .story-content{
 
@@ -1351,6 +1587,28 @@ footer{
 
     padding:16px 34px;
 
+}
+.experience-card{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+
+.experience-card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    display:block;
+}
+
+.experience-info{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+}
+
+.experience-info a{
+    margin-top:auto;
 }
 
 }

@@ -14,8 +14,11 @@ const dropBtn = document.querySelector(".dropbtn");
 const bookingButton = document.querySelector(".booking-card button");
 const heroImage = document.querySelector(".hero-image img");
 
+const STAFF_PIN = "4728";
+let staffAuthorized = false;
+
 /* =========================
-   HEADER SCROLL EFFECT
+   HEADER
 ========================= */
 
 window.addEventListener("scroll", () => {
@@ -30,29 +33,25 @@ window.addEventListener("scroll", () => {
 
         logo.style.color = "#06384b";
 
-        document.querySelectorAll(".nav-links a").forEach(link => {
-            link.style.color = "#06384b";
+        document.querySelectorAll(".nav-links > li > a").forEach(link=>{
+            link.style.color="#06384b";
         });
 
-        if (dropBtn) {
-            dropBtn.style.color = "#06384b";
-        }
+        dropBtn.style.color="#06384b";
 
     } else {
 
-        header.style.background = "transparent";
-        header.style.backdropFilter = "none";
-        header.style.boxShadow = "none";
+        header.style.background="transparent";
+        header.style.backdropFilter="none";
+        header.style.boxShadow="none";
 
-        logo.style.color = "white";
+        logo.style.color="white";
 
-        document.querySelectorAll(".nav-links a").forEach(link => {
-            link.style.color = "white";
+        document.querySelectorAll(".nav-links > li > a").forEach(link=>{
+            link.style.color="white";
         });
 
-        if (dropBtn) {
-            dropBtn.style.color = "white";
-        }
+        dropBtn.style.color="white";
 
     }
 
@@ -62,63 +61,74 @@ window.addEventListener("scroll", () => {
    MOBILE MENU
 ========================= */
 
-if (menu) {
+menu.addEventListener("click",()=>{
 
-    menu.addEventListener("click", () => {
-
-        navLinks.classList.toggle("active");
-
-    });
-
-}
-
-/* =========================
-   MORE DROPDOWN
-========================= */
-
-if (dropBtn) {
-
-    dropBtn.addEventListener("click", (e) => {
-
-        e.preventDefault();
-        e.stopPropagation();
-
-        dropdown.classList.toggle("open");
-
-    });
-
-}
-
-/* =========================
-   CLOSE DROPDOWN WHEN CLICKING OUTSIDE
-========================= */
-
-document.addEventListener("click", (e) => {
-
-    if (!dropdown.contains(e.target)) {
-
-        dropdown.classList.remove("open");
-
-    }
+    navLinks.classList.toggle("active");
 
 });
 
 /* =========================
-   CLOSE MOBILE MENU AFTER CLICKING LINK
+   STAFF DROPDOWN
 ========================= */
 
-document.querySelectorAll(".nav-links a").forEach(link => {
+dropBtn.addEventListener("click",(e)=>{
 
-    link.addEventListener("click", () => {
+    e.preventDefault();
+    e.stopPropagation();
 
-        if (window.innerWidth <= 1000) {
+    if(!staffAuthorized){
 
-            navLinks.classList.remove("active");
-            dropdown.classList.remove("open");
+        const entered=prompt("Enter Staff PIN");
+
+        if(entered!==STAFF_PIN){
+
+            alert("Incorrect PIN");
+            return;
 
         }
 
+        staffAuthorized=true;
+
+    }
+
+    dropdown.classList.toggle("open");
+
+});
+
+/* =========================
+   SUBMENUS
+========================= */
+
+document.querySelectorAll(".submenu-btn").forEach(button=>{
+
+    button.addEventListener("click",(e)=>{
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        button.parentElement.classList.toggle("active");
+
     });
+
+});
+
+/* =========================
+   CLOSE WHEN CLICKING AWAY
+========================= */
+
+document.addEventListener("click",(e)=>{
+
+    if(!dropdown.contains(e.target)){
+
+        dropdown.classList.remove("open");
+
+        document.querySelectorAll(".submenu").forEach(menu=>{
+
+            menu.classList.remove("active");
+
+        });
+
+    }
 
 });
 
@@ -126,19 +136,19 @@ document.querySelectorAll(".nav-links a").forEach(link => {
    SMOOTH SCROLL
 ========================= */
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 
-    anchor.addEventListener("click", function (e) {
+    anchor.addEventListener("click",function(e){
 
-        const target = document.querySelector(this.getAttribute("href"));
+        const target=document.querySelector(this.getAttribute("href"));
 
-        if (target) {
+        if(target){
 
             e.preventDefault();
 
             target.scrollIntoView({
 
-                behavior: "smooth"
+                behavior:"smooth"
 
             });
 
@@ -149,80 +159,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* =========================
-   SCROLL REVEAL
-========================= */
-
-const revealItems = document.querySelectorAll(
-
-    ".intro-text, .intro-image, .experience-card, .story-image, .story-content, .gallery-grid img, .booking-box"
-
-);
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("visible");
-
-        }
-
-    });
-
-}, {
-
-    threshold: .15
-
-});
-
-revealItems.forEach(item => {
-
-    item.classList.add("reveal");
-
-    observer.observe(item);
-
-});
-
-/* =========================
-   ADD ANIMATION CSS
-========================= */
-
-const animationStyle = document.createElement("style");
-
-animationStyle.innerHTML = `
-
-.reveal{
-
-opacity:0;
-transform:translateY(60px);
-transition:1s ease;
-
-}
-
-.visible{
-
-opacity:1;
-transform:translateY(0);
-
-}
-
-`;
-
-document.head.appendChild(animationStyle);
-
-/* =========================
    HERO PARALLAX
 ========================= */
 
-window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
-    if (heroImage) {
-
-        heroImage.style.transform =
-            "translateY(" + (window.scrollY * .25) + "px)";
-
-    }
+    heroImage.style.transform=
+        "translateY("+(window.scrollY*.25)+"px)";
 
 });
 
@@ -230,62 +173,67 @@ window.addEventListener("scroll", () => {
    BOOKING BUTTON
 ========================= */
 
-if (bookingButton) {
+bookingButton.addEventListener("click",()=>{
 
-    bookingButton.addEventListener("click", () => {
+    document.querySelector("#booking").scrollIntoView({
 
-        document.querySelector("#booking").scrollIntoView({
-
-            behavior: "smooth"
-
-        });
+        behavior:"smooth"
 
     });
+
+});
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const revealItems=document.querySelectorAll(
+
+".intro-text,.intro-image,.experience-card,.story-image,.story-content,.gallery-grid img,.booking-box,.vessel-image,.vessel-details"
+
+);
+
+const observer=new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("visible");
 
 }
 
-/* =========================
-   ACTIVE NAV LINK
-========================= */
+});
 
-const sections = document.querySelectorAll("section");
+},{threshold:.15});
 
-window.addEventListener("scroll", () => {
+revealItems.forEach(item=>{
 
-    let current = "";
+item.classList.add("reveal");
 
-    sections.forEach(section => {
-
-        const top = section.offsetTop - 200;
-
-        if (window.scrollY >= top) {
-
-            current = section.getAttribute("id");
-
-        }
-
-    });
-
-    document.querySelectorAll(".nav-links a").forEach(link => {
-
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") === "#" + current) {
-
-            link.classList.add("active");
-
-        }
-
-    });
+observer.observe(item);
 
 });
 
-/* =========================
-   PAGE LOAD
-========================= */
+const style=document.createElement("style");
 
-window.addEventListener("load", () => {
+style.innerHTML=`
 
-    document.body.style.opacity = "1";
+.reveal{
 
-});
+opacity:0;
+transform:translateY(60px);
+transition:1s;
+
+}
+
+.visible{
+
+opacity:1;
+transform:none;
+
+}
+
+`;
+
+document.head.appendChild(style);

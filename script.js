@@ -1,246 +1,196 @@
 /* =====================================================
-   AQUALUX - Tropical Bahamas Luxury Website
-   SCRIPT.JS
+   AQUALUX - SCRIPT.JS
 ===================================================== */
 
+/* =========================
+   ELEMENTS
+========================= */
+
+const header = document.querySelector(".header");
+const menu = document.querySelector(".menu");
+const navLinks = document.querySelector(".nav-links");
+const dropdown = document.querySelector(".dropdown");
+const dropBtn = document.querySelector(".dropbtn");
+const bookingButton = document.querySelector(".booking-card button");
+const heroImage = document.querySelector(".hero-image img");
 
 /* =========================
    HEADER SCROLL EFFECT
 ========================= */
 
-const header = document.querySelector(".header");
-
-
 window.addEventListener("scroll", () => {
 
-    if(window.scrollY > 80){
+    const logo = document.querySelector(".logo");
 
-        header.style.background = "rgba(255,255,255,0.95)";
-        header.style.backdropFilter = "blur(10px)";
+    if (window.scrollY > 80) {
 
-        document.querySelector(".logo").style.color = "#06384b";
+        header.style.background = "rgba(255,255,255,.95)";
+        header.style.backdropFilter = "blur(12px)";
+        header.style.boxShadow = "0 10px 30px rgba(0,0,0,.08)";
 
+        logo.style.color = "#06384b";
 
-        document.querySelectorAll(".nav-links a")
-        .forEach(link => {
-
+        document.querySelectorAll(".nav-links a").forEach(link => {
             link.style.color = "#06384b";
-
         });
 
+        if (dropBtn) {
+            dropBtn.style.color = "#06384b";
+        }
 
     } else {
 
-
         header.style.background = "transparent";
+        header.style.backdropFilter = "none";
+        header.style.boxShadow = "none";
 
+        logo.style.color = "white";
 
-        document.querySelector(".logo").style.color = "white";
-
-
-        document.querySelectorAll(".nav-links a")
-        .forEach(link => {
-
+        document.querySelectorAll(".nav-links a").forEach(link => {
             link.style.color = "white";
-
         });
 
+        if (dropBtn) {
+            dropBtn.style.color = "white";
+        }
 
     }
 
-
 });
-
-
-
-
 
 /* =========================
    MOBILE MENU
 ========================= */
 
+if (menu) {
 
-const menu = document.querySelector(".menu");
-const navLinks = document.querySelector(".nav-links");
+    menu.addEventListener("click", () => {
 
+        navLinks.classList.toggle("active");
 
-menu.addEventListener("click",()=>{
+    });
 
+}
 
-    navLinks.classList.toggle("active");
+/* =========================
+   MORE DROPDOWN
+========================= */
 
+if (dropBtn) {
+
+    dropBtn.addEventListener("click", (e) => {
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        dropdown.classList.toggle("open");
+
+    });
+
+}
+
+/* =========================
+   CLOSE DROPDOWN WHEN CLICKING OUTSIDE
+========================= */
+
+document.addEventListener("click", (e) => {
+
+    if (!dropdown.contains(e.target)) {
+
+        dropdown.classList.remove("open");
+
+    }
 
 });
 
-
-
-
-
 /* =========================
-   MOBILE MENU STYLE
+   CLOSE MOBILE MENU AFTER CLICKING LINK
 ========================= */
 
+document.querySelectorAll(".nav-links a").forEach(link => {
 
-const style = document.createElement("style");
+    link.addEventListener("click", () => {
 
+        if (window.innerWidth <= 1000) {
 
-style.innerHTML = `
+            navLinks.classList.remove("active");
+            dropdown.classList.remove("open");
 
-@media(max-width:1000px){
+        }
 
-.nav-links.active{
+    });
 
-display:flex;
-position:absolute;
-top:100px;
-left:0;
-width:100%;
-background:white;
-
-flex-direction:column;
-align-items:center;
-
-padding:40px;
-
-box-shadow:0 20px 40px rgba(0,0,0,.1);
-
-}
-
-.nav-links.active a{
-
-color:#06384b !important;
-
-}
-
-}
-
-`;
-
-document.head.appendChild(style);
-
-
-
-
-
+});
 
 /* =========================
    SMOOTH SCROLL
 ========================= */
 
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-document.querySelectorAll('a[href^="#"]')
-.forEach(anchor=>{
+    anchor.addEventListener("click", function (e) {
 
+        const target = document.querySelector(this.getAttribute("href"));
 
-anchor.addEventListener("click",function(e){
+        if (target) {
 
+            e.preventDefault();
 
-const target=document.querySelector(
-this.getAttribute("href")
-);
+            target.scrollIntoView({
 
+                behavior: "smooth"
 
-if(target){
+            });
 
-e.preventDefault();
+        }
 
-
-target.scrollIntoView({
-
-behavior:"smooth"
+    });
 
 });
-
-
-navLinks.classList.remove("active");
-
-
-}
-
-
-});
-
-
-});
-
-
-
-
-
-
 
 /* =========================
-   SCROLL REVEAL ANIMATION
+   SCROLL REVEAL
 ========================= */
 
+const revealItems = document.querySelectorAll(
 
-const revealElements = document.querySelectorAll(
-
-".intro-text, .intro-image, .experience-card, .story-image, .story-content, .gallery-grid img, .booking-box"
-
-);
-
-
-
-const observer = new IntersectionObserver(
-
-(entries)=>{
-
-
-entries.forEach(entry=>{
-
-
-if(entry.isIntersecting){
-
-
-entry.target.classList.add("visible");
-
-
-}
-
-
-});
-
-
-},
-
-{
-
-threshold:.15
-
-}
-
+    ".intro-text, .intro-image, .experience-card, .story-image, .story-content, .gallery-grid img, .booking-box"
 
 );
 
+const observer = new IntersectionObserver((entries) => {
 
+    entries.forEach(entry => {
 
-revealElements.forEach(element=>{
+        if (entry.isIntersecting) {
 
+            entry.target.classList.add("visible");
 
-element.classList.add("reveal");
+        }
 
+    });
 
-observer.observe(element);
+}, {
 
+    threshold: .15
 
 });
 
+revealItems.forEach(item => {
 
+    item.classList.add("reveal");
 
+    observer.observe(item);
 
-
+});
 
 /* =========================
    ADD ANIMATION CSS
 ========================= */
 
+const animationStyle = document.createElement("style");
 
-const animationCSS = document.createElement("style");
-
-
-animationCSS.innerHTML = `
-
+animationStyle.innerHTML = `
 
 .reveal{
 
@@ -250,8 +200,6 @@ transition:1s ease;
 
 }
 
-
-
 .visible{
 
 opacity:1;
@@ -259,213 +207,85 @@ transform:translateY(0);
 
 }
 
-
-
-.booking-card{
-
-animation:floatCard 4s ease-in-out infinite;
-
-}
-
-
-
-@keyframes floatCard{
-
-
-0%{
-
-transform:translateY(0);
-
-}
-
-
-50%{
-
-transform:translateY(-15px);
-
-}
-
-
-100%{
-
-transform:translateY(0);
-
-}
-
-
-}
-
-
-
 `;
 
-
-
-document.head.appendChild(animationCSS);
-
-
-
-
-
-
+document.head.appendChild(animationStyle);
 
 /* =========================
-   HERO PARALLAX EFFECT
+   HERO PARALLAX
 ========================= */
 
+window.addEventListener("scroll", () => {
 
-const heroImage = document.querySelector(".hero-image img");
+    if (heroImage) {
 
+        heroImage.style.transform =
+            "translateY(" + (window.scrollY * .25) + "px)";
 
-window.addEventListener("scroll",()=>{
-
-
-let scroll = window.scrollY;
-
-
-if(heroImage){
-
-
-heroImage.style.transform =
-
-`translateY(${scroll * .25}px)`;
-
-
-}
-
+    }
 
 });
-
-
-
-
-
-
-/* =========================
-   IMAGE HOVER EFFECT
-========================= */
-
-
-document.querySelectorAll("img")
-.forEach(image=>{
-
-
-image.addEventListener("mouseenter",()=>{
-
-
-image.style.transition=".5s";
-
-
-});
-
-
-});
-
-
-
-
-
 
 /* =========================
    BOOKING BUTTON
 ========================= */
 
+if (bookingButton) {
 
-const bookingButton =
-document.querySelector(".booking-card button");
+    bookingButton.addEventListener("click", () => {
 
+        document.querySelector("#booking").scrollIntoView({
 
+            behavior: "smooth"
 
-if(bookingButton){
+        });
 
-
-bookingButton.addEventListener("click",()=>{
-
-
-document.querySelector("#booking")
-.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-
-});
-
+    });
 
 }
-
-
-
-
-
 
 /* =========================
-   ACTIVE SECTION HIGHLIGHT
+   ACTIVE NAV LINK
 ========================= */
 
+const sections = document.querySelectorAll("section");
 
-const sections =
-document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
 
+    let current = "";
 
-window.addEventListener("scroll",()=>{
+    sections.forEach(section => {
 
+        const top = section.offsetTop - 200;
 
-let current="";
+        if (window.scrollY >= top) {
 
+            current = section.getAttribute("id");
 
-sections.forEach(section=>{
+        }
 
+    });
 
-const sectionTop =
-section.offsetTop - 200;
+    document.querySelectorAll(".nav-links a").forEach(link => {
 
+        link.classList.remove("active");
 
-if(window.scrollY >= sectionTop){
+        if (link.getAttribute("href") === "#" + current) {
 
-current = section.id;
+            link.classList.add("active");
 
-}
+        }
 
-
-});
-
-
-
-document.querySelectorAll(".nav-links a")
-.forEach(link=>{
-
-
-link.classList.remove("active");
-
-
-if(link.getAttribute("href") === "#" + current){
-
-link.classList.add("active");
-
-}
-
+    });
 
 });
-
-
-});
-
-
-
-
-
 
 /* =========================
-   PAGE LOAD EFFECT
+   PAGE LOAD
 ========================= */
 
+window.addEventListener("load", () => {
 
-window.addEventListener("load",()=>{
-
-
-document.body.style.opacity="1";
-
+    document.body.style.opacity = "1";
 
 });

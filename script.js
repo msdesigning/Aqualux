@@ -1,48 +1,57 @@
 /* =====================================================
-   AQUALUX - Luxury Bahamas Charter Website
+   AQUALUX - Tropical Bahamas Luxury Website
    SCRIPT.JS
 ===================================================== */
-
-
-/* =========================
-   PRELOADER
-========================= */
-
-window.addEventListener("load", () => {
-
-    const preloader = document.getElementById("preloader");
-
-    setTimeout(() => {
-
-        preloader.style.opacity = "0";
-        preloader.style.visibility = "hidden";
-
-    }, 500);
-
-});
-
 
 
 /* =========================
    HEADER SCROLL EFFECT
 ========================= */
 
-const header = document.getElementById("header");
+const header = document.querySelector(".header");
 
 
 window.addEventListener("scroll", () => {
 
     if(window.scrollY > 80){
 
-        header.classList.add("scrolled");
+        header.style.background = "rgba(255,255,255,0.95)";
+        header.style.backdropFilter = "blur(10px)";
+
+        document.querySelector(".logo").style.color = "#06384b";
+
+
+        document.querySelectorAll(".nav-links a")
+        .forEach(link => {
+
+            link.style.color = "#06384b";
+
+        });
+
 
     } else {
 
-        header.classList.remove("scrolled");
+
+        header.style.background = "transparent";
+
+
+        document.querySelector(".logo").style.color = "white";
+
+
+        document.querySelectorAll(".nav-links a")
+        .forEach(link => {
+
+            link.style.color = "white";
+
+        });
+
 
     }
 
+
 });
+
+
 
 
 
@@ -50,217 +59,67 @@ window.addEventListener("scroll", () => {
    MOBILE MENU
 ========================= */
 
-const menuToggle = document.getElementById("menu-toggle");
-const nav = document.getElementById("nav");
-const navLinks = document.querySelectorAll(".nav-link");
+
+const menu = document.querySelector(".menu");
+const navLinks = document.querySelector(".nav-links");
 
 
-menuToggle.addEventListener("click", () => {
+menu.addEventListener("click",()=>{
 
-    nav.classList.toggle("active");
+
+    navLinks.classList.toggle("active");
+
 
 });
 
 
-navLinks.forEach(link => {
-
-    link.addEventListener("click", () => {
-
-        nav.classList.remove("active");
-
-    });
-
-});
 
 
 
 /* =========================
-   ACTIVE NAV LINK
+   MOBILE MENU STYLE
 ========================= */
 
 
-const sections = document.querySelectorAll("section");
+const style = document.createElement("style");
 
 
-window.addEventListener("scroll", () => {
+style.innerHTML = `
 
-    let current = "";
+@media(max-width:1000px){
 
-    sections.forEach(section => {
+.nav-links.active{
 
-        const sectionTop = section.offsetTop - 150;
-        const sectionHeight = section.offsetHeight;
+display:flex;
+position:absolute;
+top:100px;
+left:0;
+width:100%;
+background:white;
 
-        if(
-            window.scrollY >= sectionTop &&
-            window.scrollY < sectionTop + sectionHeight
-        ){
+flex-direction:column;
+align-items:center;
 
-            current = section.getAttribute("id");
+padding:40px;
 
-        }
-
-    });
-
-
-    navLinks.forEach(link => {
-
-        link.classList.remove("active");
-
-        if(link.getAttribute("href") === "#" + current){
-
-            link.classList.add("active");
-
-        }
-
-    });
-
-});
-
-
-
-/* =========================
-   ANIMATED COUNTERS
-========================= */
-
-const counters = document.querySelectorAll(".stat-number");
-
-
-let counterStarted = false;
-
-
-function startCounters(){
-
-    if(counterStarted) return;
-
-
-    const statsSection = document.querySelector(".hero-stats");
-
-    const position = statsSection.getBoundingClientRect().top;
-
-
-    if(position < window.innerHeight){
-
-        counterStarted = true;
-
-
-        counters.forEach(counter => {
-
-            const target = +counter.dataset.count;
-
-            let count = 0;
-
-            const speed = target / 80;
-
-
-            function update(){
-
-                count += speed;
-
-
-                if(count < target){
-
-                    counter.innerText = Math.ceil(count);
-
-                    requestAnimationFrame(update);
-
-                }
-                else{
-
-                    counter.innerText = target + "+";
-
-                }
-
-            }
-
-
-            update();
-
-        });
-
-    }
+box-shadow:0 20px 40px rgba(0,0,0,.1);
 
 }
 
+.nav-links.active a{
 
-window.addEventListener("scroll", startCounters);
+color:#06384b !important;
 
+}
 
+}
 
-/* =========================
-   FAQ ACCORDION
-========================= */
+`;
 
-const faqItems = document.querySelectorAll(".faq-item");
-
-
-faqItems.forEach(item => {
-
-
-    const button = item.querySelector(".faq-question");
-
-
-    button.addEventListener("click", () => {
-
-
-        faqItems.forEach(other => {
-
-            if(other !== item){
-
-                other.classList.remove("active");
-
-            }
-
-        });
-
-
-        item.classList.toggle("active");
-
-
-    });
-
-
-});
+document.head.appendChild(style);
 
 
 
-/* =========================
-   BACK TO TOP BUTTON
-========================= */
-
-
-const backTop = document.getElementById("back-to-top");
-
-
-window.addEventListener("scroll", () => {
-
-
-    if(window.scrollY > 500){
-
-        backTop.classList.add("show");
-
-    }
-
-    else{
-
-        backTop.classList.remove("show");
-
-    }
-
-
-});
-
-
-backTop.addEventListener("click", () => {
-
-    window.scrollTo({
-
-        top:0,
-        behavior:"smooth"
-
-    });
-
-});
 
 
 
@@ -269,35 +128,44 @@ backTop.addEventListener("click", () => {
 ========================= */
 
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"]')
+.forEach(anchor=>{
 
 
-    anchor.addEventListener("click", function(e){
+anchor.addEventListener("click",function(e){
 
 
-        const target = document.querySelector(
-            this.getAttribute("href")
-        );
+const target=document.querySelector(
+this.getAttribute("href")
+);
 
 
-        if(target){
+if(target){
 
-            e.preventDefault();
-
-
-            target.scrollIntoView({
-
-                behavior:"smooth"
-
-            });
-
-        }
+e.preventDefault();
 
 
-    });
+target.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+
+navLinks.classList.remove("active");
+
+
+}
 
 
 });
+
+
+});
+
+
+
+
 
 
 
@@ -307,108 +175,297 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 
 const revealElements = document.querySelectorAll(
-    ".tour-card, .feature-card, .why-card, .fleet-card, .testimonial-card, .contact-card"
+
+".intro-text, .intro-image, .experience-card, .story-image, .story-content, .gallery-grid img, .booking-box"
+
 );
 
 
 
-const revealObserver = new IntersectionObserver(
+const observer = new IntersectionObserver(
+
 (entries)=>{
 
 
-    entries.forEach(entry=>{
+entries.forEach(entry=>{
 
 
-        if(entry.isIntersecting){
+if(entry.isIntersecting){
 
 
-            entry.target.classList.add("show");
+entry.target.classList.add("visible");
 
 
-            revealObserver.unobserve(entry.target);
+}
 
 
-        }
-
-
-    });
+});
 
 
 },
+
 {
-    threshold:0.15
-});
+
+threshold:.15
+
+}
+
+
+);
 
 
 
 revealElements.forEach(element=>{
 
 
-    element.classList.add("hidden");
+element.classList.add("reveal");
 
 
-    revealObserver.observe(element);
-
-
-});
-
-
-
-/* =========================
-   BOOKING FORM
-========================= */
-
-
-const bookingForm = document.getElementById("booking-form");
-
-
-bookingForm.addEventListener("submit",(e)=>{
-
-
-    e.preventDefault();
-
-
-    const button = bookingForm.querySelector("button");
-
-
-    button.innerHTML =
-    '<i class="fa-solid fa-check"></i> Request Sent';
-
-
-    button.style.background="#1fa463";
-
-
-    setTimeout(()=>{
-
-
-        bookingForm.reset();
-
-
-        button.innerHTML =
-        "Request a Quote";
-
-
-        button.style.background="";
-
-
-    },3000);
+observer.observe(element);
 
 
 });
 
 
 
+
+
+
 /* =========================
-   CURRENT YEAR FOOTER
+   ADD ANIMATION CSS
 ========================= */
 
 
-const year = document.querySelector(".footer-bottom p");
+const animationCSS = document.createElement("style");
 
 
-if(year){
+animationCSS.innerHTML = `
 
-    year.innerHTML =
-    `&copy; ${new Date().getFullYear()} Aqualux. All rights reserved.`;
+
+.reveal{
+
+opacity:0;
+transform:translateY(60px);
+transition:1s ease;
 
 }
+
+
+
+.visible{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+
+
+.booking-card{
+
+animation:floatCard 4s ease-in-out infinite;
+
+}
+
+
+
+@keyframes floatCard{
+
+
+0%{
+
+transform:translateY(0);
+
+}
+
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+
+100%{
+
+transform:translateY(0);
+
+}
+
+
+}
+
+
+
+`;
+
+
+
+document.head.appendChild(animationCSS);
+
+
+
+
+
+
+
+/* =========================
+   HERO PARALLAX EFFECT
+========================= */
+
+
+const heroImage = document.querySelector(".hero-image img");
+
+
+window.addEventListener("scroll",()=>{
+
+
+let scroll = window.scrollY;
+
+
+if(heroImage){
+
+
+heroImage.style.transform =
+
+`translateY(${scroll * .25}px)`;
+
+
+}
+
+
+});
+
+
+
+
+
+
+/* =========================
+   IMAGE HOVER EFFECT
+========================= */
+
+
+document.querySelectorAll("img")
+.forEach(image=>{
+
+
+image.addEventListener("mouseenter",()=>{
+
+
+image.style.transition=".5s";
+
+
+});
+
+
+});
+
+
+
+
+
+
+/* =========================
+   BOOKING BUTTON
+========================= */
+
+
+const bookingButton =
+document.querySelector(".booking-card button");
+
+
+
+if(bookingButton){
+
+
+bookingButton.addEventListener("click",()=>{
+
+
+document.querySelector("#booking")
+.scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+
+});
+
+
+}
+
+
+
+
+
+
+/* =========================
+   ACTIVE SECTION HIGHLIGHT
+========================= */
+
+
+const sections =
+document.querySelectorAll("section");
+
+
+window.addEventListener("scroll",()=>{
+
+
+let current="";
+
+
+sections.forEach(section=>{
+
+
+const sectionTop =
+section.offsetTop - 200;
+
+
+if(window.scrollY >= sectionTop){
+
+current = section.id;
+
+}
+
+
+});
+
+
+
+document.querySelectorAll(".nav-links a")
+.forEach(link=>{
+
+
+link.classList.remove("active");
+
+
+if(link.getAttribute("href") === "#" + current){
+
+link.classList.add("active");
+
+}
+
+
+});
+
+
+});
+
+
+
+
+
+
+/* =========================
+   PAGE LOAD EFFECT
+========================= */
+
+
+window.addEventListener("load",()=>{
+
+
+document.body.style.opacity="1";
+
+
+});

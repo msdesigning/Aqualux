@@ -1,226 +1,86 @@
-/* =========================
-   STICKY NAVBAR EFFECT
-========================= */
+/* =====================================================
+   AQUALUX - Luxury Bahamas Charter Website
+   SCRIPT.JS
+===================================================== */
 
-const navbar = document.getElementById("navbar");
-
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add("scrolled");
-    } else {
-        navbar.classList.remove("scrolled");
-    }
-});
 
 /* =========================
-   SCROLL REVEAL
-========================= */
-
-const revealElements = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-    revealElements.forEach((element) => {
-        const windowHeight = window.innerHeight;
-        const revealTop = element.getBoundingClientRect().top;
-
-        if (revealTop < windowHeight - 100) {
-            element.classList.add("active");
-        }
-    });
-}
-
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
-
-/* =========================
-   COUNTER ANIMATION
-========================= */
-
-const counters = document.querySelectorAll(".counter");
-
-let countersStarted = false;
-
-function runCounters() {
-    if (countersStarted) return;
-
-    const statsSection = document.querySelector(".hero-stats");
-
-    if (!statsSection) return;
-
-    const sectionTop = statsSection.getBoundingClientRect().top;
-
-    if (sectionTop < window.innerHeight - 100) {
-        countersStarted = true;
-
-        counters.forEach(counter => {
-
-            const target = parseInt(counter.dataset.target);
-            const duration = 2000;
-            const increment = target / (duration / 16);
-
-            let current = 0;
-
-            const updateCounter = () => {
-                current += increment;
-
-                if (current < target) {
-                    counter.textContent = Math.floor(current);
-                    requestAnimationFrame(updateCounter);
-                } else {
-                    counter.textContent = target;
-                }
-            };
-
-            updateCounter();
-        });
-    }
-}
-
-window.addEventListener("scroll", runCounters);
-window.addEventListener("load", runCounters);
-
-/* =========================
-   SMOOTH SCROLL FOR LINKS
-========================= */
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e) {
-
-        const target = document.querySelector(
-            this.getAttribute("href")
-        );
-
-        if (!target) return;
-
-        e.preventDefault();
-
-        target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    });
-});
-
-/* =========================
-   HERO FADE-IN
+   PRELOADER
 ========================= */
 
 window.addEventListener("load", () => {
 
-    const heroContent =
-        document.querySelector(".hero-content");
+    const preloader = document.getElementById("preloader");
 
-    const heroStats =
-        document.querySelector(".hero-stats");
+    setTimeout(() => {
 
-    if (heroContent) {
-        heroContent.style.opacity = "0";
-        heroContent.style.transform = "translateY(40px)";
+        preloader.style.opacity = "0";
+        preloader.style.visibility = "hidden";
 
-        setTimeout(() => {
-            heroContent.style.transition =
-                "all 1s ease";
+    }, 500);
 
-            heroContent.style.opacity = "1";
-            heroContent.style.transform =
-                "translateY(0)";
-        }, 150);
-    }
-
-    if (heroStats) {
-        heroStats.style.opacity = "0";
-        heroStats.style.transform =
-            "translateY(40px)";
-
-        setTimeout(() => {
-            heroStats.style.transition =
-                "all 1s ease";
-
-            heroStats.style.opacity = "1";
-            heroStats.style.transform =
-                "translateY(0)";
-        }, 450);
-    }
 });
+
+
 
 /* =========================
-   PARALLAX GLOW EFFECT
+   HEADER SCROLL EFFECT
 ========================= */
 
-const glow1 = document.querySelector(".glow-1");
-const glow2 = document.querySelector(".glow-2");
+const header = document.getElementById("header");
 
-window.addEventListener("mousemove", (e) => {
 
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
+window.addEventListener("scroll", () => {
 
-    if (glow1) {
-        glow1.style.transform =
-            `translate(${x * 40}px, ${y * 40}px)`;
+    if(window.scrollY > 80){
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
     }
 
-    if (glow2) {
-        glow2.style.transform =
-            `translate(${-x * 40}px, ${-y * 40}px)`;
-    }
 });
+
+
 
 /* =========================
-   SERVICE CARD HOVER TILT
+   MOBILE MENU
 ========================= */
 
-const cards = document.querySelectorAll(
-    ".service-card, .portfolio-card, .benefit-card, .testimonial-card"
-);
+const menuToggle = document.getElementById("menu-toggle");
+const nav = document.getElementById("nav");
+const navLinks = document.querySelectorAll(".nav-link");
 
-cards.forEach(card => {
 
-    card.addEventListener("mousemove", (e) => {
+menuToggle.addEventListener("click", () => {
 
-        const rect = card.getBoundingClientRect();
+    nav.classList.toggle("active");
 
-        const x =
-            e.clientX - rect.left;
-
-        const y =
-            e.clientY - rect.top;
-
-        const centerX =
-            rect.width / 2;
-
-        const centerY =
-            rect.height / 2;
-
-        const rotateX =
-            (y - centerY) / 20;
-
-        const rotateY =
-            (centerX - x) / 20;
-
-        card.style.transform =
-            `perspective(1000px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)
-             translateY(-8px)`;
-    });
-
-    card.addEventListener("mouseleave", () => {
-
-        card.style.transform =
-            "perspective(1000px) rotateX(0) rotateY(0)";
-    });
 });
+
+
+navLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        nav.classList.remove("active");
+
+    });
+
+});
+
+
 
 /* =========================
    ACTIVE NAV LINK
 ========================= */
 
-const sections =
-    document.querySelectorAll("section");
 
-const navLinks =
-    document.querySelectorAll(".nav-links a");
+const sections = document.querySelectorAll("section");
+
 
 window.addEventListener("scroll", () => {
 
@@ -228,62 +88,327 @@ window.addEventListener("scroll", () => {
 
     sections.forEach(section => {
 
-        const sectionTop =
-            section.offsetTop - 150;
+        const sectionTop = section.offsetTop - 150;
+        const sectionHeight = section.offsetHeight;
 
-        const sectionHeight =
-            section.offsetHeight;
+        if(
+            window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight
+        ){
 
-        if (
-            pageYOffset >= sectionTop &&
-            pageYOffset < sectionTop + sectionHeight
-        ) {
             current = section.getAttribute("id");
+
         }
+
     });
+
 
     navLinks.forEach(link => {
 
         link.classList.remove("active");
 
-        if (
-            link.getAttribute("href") ===
-            `#${current}`
-        ) {
+        if(link.getAttribute("href") === "#" + current){
+
             link.classList.add("active");
+
         }
+
     });
+
 });
 
+
+
 /* =========================
-   FLOATING PARTICLES
+   ANIMATED COUNTERS
 ========================= */
 
-function createParticle() {
+const counters = document.querySelectorAll(".stat-number");
 
-    const particle =
-        document.createElement("div");
 
-    particle.classList.add("particle");
+let counterStarted = false;
 
-    particle.style.left =
-        Math.random() * window.innerWidth + "px";
 
-    particle.style.animationDuration =
-        Math.random() * 10 + 8 + "s";
+function startCounters(){
 
-    particle.style.opacity =
-        Math.random();
+    if(counterStarted) return;
 
-    particle.style.width =
-        particle.style.height =
-        Math.random() * 4 + 2 + "px";
 
-    document.body.appendChild(particle);
+    const statsSection = document.querySelector(".hero-stats");
 
-    setTimeout(() => {
-        particle.remove();
-    }, 18000);
+    const position = statsSection.getBoundingClientRect().top;
+
+
+    if(position < window.innerHeight){
+
+        counterStarted = true;
+
+
+        counters.forEach(counter => {
+
+            const target = +counter.dataset.count;
+
+            let count = 0;
+
+            const speed = target / 80;
+
+
+            function update(){
+
+                count += speed;
+
+
+                if(count < target){
+
+                    counter.innerText = Math.ceil(count);
+
+                    requestAnimationFrame(update);
+
+                }
+                else{
+
+                    counter.innerText = target + "+";
+
+                }
+
+            }
+
+
+            update();
+
+        });
+
+    }
+
 }
 
-setInterval(createParticle, 350);
+
+window.addEventListener("scroll", startCounters);
+
+
+
+/* =========================
+   FAQ ACCORDION
+========================= */
+
+const faqItems = document.querySelectorAll(".faq-item");
+
+
+faqItems.forEach(item => {
+
+
+    const button = item.querySelector(".faq-question");
+
+
+    button.addEventListener("click", () => {
+
+
+        faqItems.forEach(other => {
+
+            if(other !== item){
+
+                other.classList.remove("active");
+
+            }
+
+        });
+
+
+        item.classList.toggle("active");
+
+
+    });
+
+
+});
+
+
+
+/* =========================
+   BACK TO TOP BUTTON
+========================= */
+
+
+const backTop = document.getElementById("back-to-top");
+
+
+window.addEventListener("scroll", () => {
+
+
+    if(window.scrollY > 500){
+
+        backTop.classList.add("show");
+
+    }
+
+    else{
+
+        backTop.classList.remove("show");
+
+    }
+
+
+});
+
+
+backTop.addEventListener("click", () => {
+
+    window.scrollTo({
+
+        top:0,
+        behavior:"smooth"
+
+    });
+
+});
+
+
+
+/* =========================
+   SMOOTH SCROLL
+========================= */
+
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+
+    anchor.addEventListener("click", function(e){
+
+
+        const target = document.querySelector(
+            this.getAttribute("href")
+        );
+
+
+        if(target){
+
+            e.preventDefault();
+
+
+            target.scrollIntoView({
+
+                behavior:"smooth"
+
+            });
+
+        }
+
+
+    });
+
+
+});
+
+
+
+/* =========================
+   SCROLL REVEAL ANIMATION
+========================= */
+
+
+const revealElements = document.querySelectorAll(
+    ".tour-card, .feature-card, .why-card, .fleet-card, .testimonial-card, .contact-card"
+);
+
+
+
+const revealObserver = new IntersectionObserver(
+(entries)=>{
+
+
+    entries.forEach(entry=>{
+
+
+        if(entry.isIntersecting){
+
+
+            entry.target.classList.add("show");
+
+
+            revealObserver.unobserve(entry.target);
+
+
+        }
+
+
+    });
+
+
+},
+{
+    threshold:0.15
+});
+
+
+
+revealElements.forEach(element=>{
+
+
+    element.classList.add("hidden");
+
+
+    revealObserver.observe(element);
+
+
+});
+
+
+
+/* =========================
+   BOOKING FORM
+========================= */
+
+
+const bookingForm = document.getElementById("booking-form");
+
+
+bookingForm.addEventListener("submit",(e)=>{
+
+
+    e.preventDefault();
+
+
+    const button = bookingForm.querySelector("button");
+
+
+    button.innerHTML =
+    '<i class="fa-solid fa-check"></i> Request Sent';
+
+
+    button.style.background="#1fa463";
+
+
+    setTimeout(()=>{
+
+
+        bookingForm.reset();
+
+
+        button.innerHTML =
+        "Request a Quote";
+
+
+        button.style.background="";
+
+
+    },3000);
+
+
+});
+
+
+
+/* =========================
+   CURRENT YEAR FOOTER
+========================= */
+
+
+const year = document.querySelector(".footer-bottom p");
+
+
+if(year){
+
+    year.innerHTML =
+    `&copy; ${new Date().getFullYear()} Aqualux. All rights reserved.`;
+
+}

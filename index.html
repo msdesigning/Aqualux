@@ -6,605 +6,889 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Aqualux | Bahamas Private Boat Adventures</title>
+    <title>Aqualux | Captain Portal</title>
 
     <meta name="description"
-        content="Discover unforgettable Bahamas boat adventures, private charters, sandbars, snorkeling, and island experiences with Aqualux.">
+        content="Aqualux internal operations portal for captains and maintenance personnel.">
 
-    <!-- Fonts -->
+
+    <!-- Google Fonts -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Icons -->
+
+    <!-- Font Awesome Icons -->
+
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-    <!-- CSS -->
+
+    <!-- Main CSS -->
+
     <link rel="stylesheet" href="style.css">
+
 
 </head>
 
+
+
 <body>
 
-<!-- ================= NAVBAR ================= -->
 
-<header class="header">
 
-    <nav class="navbar">
+<!-- =========================
+     NAVBAR
+========================= -->
 
-      <a href="#" class="logo">
 
-    <img
-        src="images/Aqualuxlogo.png"
-        alt="Aqualux Logo"
-        class="logo-img"
-    >
+<header class="portal-header">
 
-    <span>AQUALUX</span>
+
+    <nav class="portal-nav">
+
+
+        <!-- Logo -->
+
+
+  <a href="images/Aqualuxlogo.png" class="portal-logo">
+
+    <span class="logo-mark">
+
+        <img
+            src="images/Aqualuxlogo.png"
+            alt="Aqualux Logo"
+            class="logo-img">
+
+    </span>
+
+    <span class="logo-text">
+
+        AQUALUX
+
+    </span>
 
 </a>
 
-        <ul class="nav-links">
 
-            <li><a href="#experiences">Experiences</a></li>
+        <!-- Dropdown -->
 
-            <li><a href="#about">About</a></li>
 
-            <li><a href="#gallery">Gallery</a></li>
+        <div class="nav-dropdown">
 
-            <li><a href="#contact">Contact</a></li>
 
-            <!-- MORE DROPDOWN -->
+            <button class="dropdown-button">
 
-            <li class="dropdown">
 
-                <button class="dropbtn">
+                More
 
-                    More
+                <i class="fa-solid fa-chevron-down"></i>
 
-                    <i class="fa-solid fa-chevron-down"></i>
 
-                </button>
+            </button>
 
-                <ul class="dropdown-menu">
 
-    <li>
-        <a href="https://www.jotform.com/app/260764335613861/260764327491058">
-            <i class="fa-solid fa-clipboard-check"></i>
-            Pre-Trip Checklist
-        </a>
-    </li>
 
-    <li>
-        <a href="https://www.jotform.com/app/260764335613861/260764791951064">
-            <i class="fa-solid fa-boxes-stacked"></i>
-            Vessel Inventory Tracking
-        </a>
-    </li>
+         <div class="dropdown-menu">
 
-    <li>
-        <a href="https://www.jotform.com/app/260764335613861/260765723764062">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-            Maintenance Log
-        </a>
-    </li>
 
-    <!-- INCIDENT REPORTS -->
+    <hr>
 
-    <li class="submenu">
+    <a href="https://www.jotform.com/app/260764335613861/260764327491058" target="_blank">
+        <i class="fa-solid fa-clipboard-check"></i>
+        Pre-Trip Checklist
+    </a>
+
+    <a href="https://www.jotform.com/app/260764335613861/260764791951064" target="_blank">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        Vessel Inventory Tracking
+    </a>
+
+    <a href="https://www.jotform.com/app/260764335613861/260765723764062" target="_blank">
+        <i class="fa-solid fa-screwdriver-wrench"></i>
+        Maintenance Log
+    </a>
+
+    <div class="submenu">
 
         <button class="submenu-btn">
 
             <span>
+
                 <i class="fa-solid fa-triangle-exclamation"></i>
+
                 Incident Reports
+
             </span>
 
             <i class="fa-solid fa-chevron-right"></i>
 
         </button>
 
-        <ul class="submenu-links">
+        <div class="submenu-links">
 
-            <li>
-                <a href="https://www.jotform.com/app/260764335613861/253204896657064">
-                    Incident Report Form
-                </a>
-            </li>
+            <a href="https://www.jotform.com/app/260764335613861/253204896657064" target="_blank">
+                Incident Report Form
+            </a>
 
-            <li>
-                <a href="https://www.jotform.com/app/260764335613861/260914822367057">
-                    Boat Incident Report
-                </a>
-            </li>
+            <a href="https://www.jotform.com/app/260764335613861/260914822367057" target="_blank">
+                Boat Incident Report
+            </a>
 
-            <li>
-                <a href="https://www.jotform.com/app/260764335613861/261305478386060">
-                   Employee Conduct Incident Report
-                </a>
-            </li>
+            <a href="https://www.jotform.com/app/260764335613861/261305478386060" target="_blank">
+                Employee Conduct Report
+            </a>
 
-        </ul>
+        </div>
 
-    </li>
+    </div>
 
-    <!-- VACATION -->
-
-    <li class="submenu">
+    <div class="submenu">
 
         <button class="submenu-btn">
 
             <span>
+
                 <i class="fa-solid fa-umbrella-beach"></i>
-                Vacation Request 
+
+                Vacation Request
+
             </span>
 
             <i class="fa-solid fa-chevron-right"></i>
 
         </button>
 
-        <ul class="submenu-links">
+        <div class="submenu-links">
 
-            <li>
-                <a href="https://www.jotform.com/app/260764335613861/253495419398069">
-                    Day Off Request Form
-                </a>
-            </li>
+            <a href="https://www.jotform.com/app/260764335613861/253495419398069" target="_blank">
+                Day Off Request
+            </a>
 
-            <li>
-                <a href="https://www.jotform.com/app/260764335613861/252873825671871">
-                    Vacation/Leave Request Form
-                </a>
-            </li>
+            <a href="https://www.jotform.com/app/260764335613861/252873825671871" target="_blank">
+                Vacation / Leave Request
+            </a>
 
-        </ul>
-
-    </li>
-
-    <li>
-        <a href="https://www.jotform.com/app/260764335613861/260625238449058">
-            <i class="fa-solid fa-tags"></i>
-            Staff Discount Request Form
-        </a>
-    </li>
-
-</ul>
-        
-        </a>
-
-        <div class="menu">
-            <span></span>
-            <span></span>
-            <span></span>
         </div>
+
+    </div>
+
+    <a href="https://www.jotform.com/app/260764335613861/260625238449058" target="_blank">
+
+        <i class="fa-solid fa-tags"></i>
+
+        Staff Discount Request
+
+    </a>
+
+</div>
+
+
+        </div>
+
+
+
 
     </nav>
 
+
+
 </header>
 
-<!-- ================= HERO ================= -->
 
-<section class="hero">
 
-    <div class="hero-image">
 
-        <img src="images/aqualuxpic1.png"
-            alt="Bahamas boat adventure">
 
-    </div>
 
-    <div class="hero-overlay"></div>
+
+
+<!-- =========================
+     MAIN PORTAL
+========================= -->
+
+
+<main class="portal-main">
+
+
+
+<!-- =========================
+     PORTAL HERO HEADER
+========================= -->
+
+
+<section class="portal-hero">
+
 
     <div class="hero-content">
 
-        <p class="hero-small">
-            DISCOVER THE BAHAMAS
+
+
+        <p class="hero-label">
+
+            AQUALUX INTERNAL SYSTEM
+
         </p>
+
+
+
 
         <h1>
-            Where Every Wave
-            Becomes A Memory
+
+            Captain & Maintenance Portal
+
         </h1>
 
-        <p class="hero-text">
 
-            Experience crystal-clear waters,
-            and unforgettable
-            adventures with Aqualux.
+
+
+        <p class="hero-description">
+
+
+            Internal operations management system
+            for Aqualux captains and maintenance personnel.
+
 
         </p>
 
-        <a href="#booking" class="main-btn">
-            Explore Adventures
-        </a>
+
 
     </div>
 
-    <!-- Floating Booking Card -->
 
-    <div class="booking-card">
-
-        <h3>
-            Plan Your Adventure
-        </h3>
-
-        <div class="booking-option">
-
-            <i class="fa-solid fa-location-dot"></i>
-
-            <div>
-
-                <span>Destination</span>
-
-                <p>Bahamas Islands</p>
-
-            </div>
-
-        </div>
-
-        <div class="booking-option">
-
-            <i class="fa-solid fa-calendar"></i>
-
-            <div>
-
-                <span>Date</span>
-
-                <p>Select Your Date</p>
-
-            </div>
-
-        </div>
-
-        <div class="booking-option">
-
-            <i class="fa-solid fa-users"></i>
-
-            <div>
-
-                <span>Guests</span>
-
-                <p>Number of Guests</p>
-
-            </div>
-
-        </div>
-
-        <button>
-            Start Booking
-        </button>
-
-    </div>
 
 </section>
 
-<!-- ================= INTRO ================= -->
 
-<section class="intro" id="about">
 
-<div class="container">
 
-    <div class="intro-text">
+
+<!-- Dashboard section starts next -->
+ <!-- =========================
+     DASHBOARD
+========================= -->
+
+<section id="dashboard" class="dashboard-section">
+
+    <div class="section-heading">
+
+        <p class="section-label">Operations Overview</p>
+
+        <h2>Dashboard</h2>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+
+        <!-- =========================
+             FEATURED VESSEL
+        ========================== -->
+
+        <article class="dashboard-card vessel-overview">
+
+            <div class="card-header">
+
+                <div>
+
+                    <p class="card-label">Primary Vessel</p>
+
+                    <h3>Torpedo Ray</h3>
+
+                </div>
+
+                <span class="status-badge operational">
+                    Operational
+                </span>
+
+            </div>
+
+
+            <div class="vessel-preview">
+
+                <img
+                    src="images/Torpedoray.png"
+                    alt="Torpedo Ray Vessel">
+
+            </div>
+
+
+            <div class="vessel-stats">
+
+                <div class="stat-item">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <div>
+
+                        <span class="stat-title">
+                            Passenger Capacity
+                        </span>
+
+                        <strong>105 Guests</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-item">
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                    <div>
+
+                        <span class="stat-title">
+                            Registration
+                        </span>
+
+                        <strong>BS-XXXXX</strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-item">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <div>
+
+                        <span class="stat-title">
+                            Captain
+                        </span>
+
+                        <strong>Assigned Daily</strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="primary-button open-vessel-modal">
+
+                <i class="fa-solid fa-circle-info"></i>
+
+                View Full Vessel Details
+
+            </button>
+
+        </article>
+
+
+
+        <!-- =========================
+             QUICK ACTIONS
+        ========================== -->
+
+        <div class="quick-actions">
+
+
+            <!-- Checklist -->
+
+            <article class="dashboard-card action-card">
+
+                <div class="action-icon">
+
+                    <i class="fa-solid fa-clipboard-check"></i>
+
+                </div>
+
+                <h3>Pre-Trip Checklist</h3>
+
+                <p>
+
+                    Complete all required inspections
+                    before departure.
+
+                </p>
+
+                <a
+                    href="https://www.jotform.com/app/260764335613861/260764327491058"
+                    target="_blank"
+                    class="secondary-button">
+
+                    Open Checklist
+
+                </a>
+
+            </article>
+
+
+
+            <!-- Inventory -->
+
+            <article class="dashboard-card action-card">
+
+                <div class="action-icon">
+
+                    <i class="fa-solid fa-boxes-stacked"></i>
+
+                </div>
+
+                <h3>Inventory Tracking</h3>
+
+                <p>
+
+                    Monitor supplies, equipment,
+                    and onboard stock levels.
+
+                </p>
+
+                <a
+                    href="https://www.jotform.com/app/260764335613861/260764791951064"
+                    target="_blank"
+                    class="secondary-button">
+
+                    Open Inventory
+
+                </a>
+
+            </article>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+<!-- =========================
+     VESSEL INFORMATION
+========================= -->
+
+<section id="vessel" class="vessel-section">
+
+    <div class="section-heading">
 
         <p class="section-label">
-            A BAHAMIAN EXPERIENCE
+            Fleet Information
         </p>
 
-        <h2>
-            More Than A Boat Ride.
-            It's Your Island Story.
-        </h2>
+        <h2>Meet Our Vessel</h2>
 
-        <p>
-
-            Aqualux creates unforgettable
-            adventures across the
-            beautiful waters of Bimini.
-
-            From peaceful beaches to hidden
-            shipwrecks, every journey is designed
-            around your perfect experience.
-
+        <p class="section-description">
+            The Torpedo Ray is Aqualux's flagship excursion vessel,
+            designed for safe, comfortable, and unforgettable experiences
+            on the waters of The Bahamas.
         </p>
 
     </div>
 
-    <div class="intro-image">
 
-        <img src="images/aqualuxpic6.png"
-        alt="Tropical Bahamas beach">
+    <div class="vessel-layout">
+
+
+        <!-- Vessel Image -->
+
+        <div class="vessel-image">
+
+            <img
+                src="images/Torpedoray.png"
+                alt="Torpedo Ray">
+
+        </div>
+
+
+
+        <!-- Vessel Details -->
+
+        <div class="vessel-details">
+
+
+            <div class="spec-grid">
+
+
+                <div class="spec-card">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <span class="spec-title">
+                        Passenger Capacity
+                    </span>
+
+                    <strong>105 Guests</strong>
+
+                </div>
+
+
+
+                <div class="spec-card">
+
+                    <i class="fa-solid fa-id-card"></i>
+
+                    <span class="spec-title">
+                        Registration
+                    </span>
+
+                    <strong>BS-XXXXX</strong>
+
+                </div>
+
+
+
+                <div class="spec-card">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                    <span class="spec-title">
+                        Captain
+                    </span>
+
+                    <strong>Assigned Daily</strong>
+
+                </div>
+
+
+
+                <div class="spec-card">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                    <span class="spec-title">
+                        Status
+                    </span>
+
+                    <strong class="status-text operational">
+                        Operational
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <button
+                class="primary-button open-vessel-modal">
+
+                <i class="fa-solid fa-ship"></i>
+
+                View Full Vessel Details
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+
+<!-- =========================
+     VESSEL MODAL
+========================= -->
+
+<div
+    class="modal-overlay"
+    id="vesselModal">
+
+    <div class="modal-window">
+
+
+        <button
+            class="close-modal"
+            aria-label="Close">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+
+
+        <div class="modal-header">
+
+            <h2>Torpedo Ray</h2>
+
+            <span class="status-badge operational">
+
+                Operational
+
+            </span>
+
+        </div>
+
+
+
+        <div class="modal-image">
+
+            <img
+                src="images/Torpedoray.png"
+                alt="Torpedo Ray">
+
+        </div>
+
+
+
+        <div class="modal-content">
+
+
+            <div class="modal-grid">
+
+
+                <div>
+
+                    <h4>Passenger Capacity</h4>
+
+                    <p>105 Guests</p>
+
+                </div>
+
+
+
+                <div>
+
+                    <h4>Registration</h4>
+
+                    <p>BS-XXXXX</p>
+
+                </div>
+
+
+
+                <div>
+
+                    <h4>Captain</h4>
+
+                    <p>Assigned Daily</p>
+
+                </div>
+
+
+
+                <div>
+
+                    <h4>Operational Status</h4>
+
+                    <p>Ready for Service</p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="modal-description">
+
+                <h3>Vessel Overview</h3>
+
+                <p>
+
+                    The Torpedo Ray is the primary vessel used
+                    for Aqualux excursions. It is maintained
+                    through scheduled inspections, daily
+                    operational checks, and preventive
+                    maintenance to ensure passenger safety,
+                    reliability, and premium guest experiences.
+
+                </p>
+
+            </div>
+
+
+
+            <div class="modal-description">
+
+                <h3>Daily Responsibilities</h3>
+
+                <ul>
+
+                    <li>Complete pre-departure safety inspections.</li>
+
+                    <li>Verify all emergency equipment.</li>
+
+                    <li>Confirm inventory and fuel levels.</li>
+
+                    <li>Inspect engines and navigation systems.</li>
+
+                    <li>Report maintenance issues immediately.</li>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
 
     </div>
 
 </div>
+<!-- =========================
+     DAILY OPERATIONS
+========================= -->
+
+<section id="operations" class="operations-section">
+
+    <div class="section-heading">
+
+        <p class="section-label">
+            Daily Workflow
+        </p>
+
+        <h2>Daily Operations</h2>
+
+        <p class="section-description">
+            Complete each operational task before and after every excursion to
+            maintain Aqualux's standards of safety and service.
+        </p>
+
+    </div>
+
+
+    <div class="operations-grid">
+
+
+        <!-- Departure Readiness -->
+
+        <article class="operation-card">
+
+            <div class="operation-icon">
+
+                <i class="fa-solid fa-anchor"></i>
+
+            </div>
+
+            <h3>Departure Readiness</h3>
+
+            <p>
+                Verify passenger safety equipment, navigation systems,
+                weather conditions, fuel levels, and departure clearance.
+            </p>
+
+        </article>
+
+
+
+        <!-- Maintenance -->
+
+        <article class="operation-card">
+
+            <div class="operation-icon">
+
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+
+            </div>
+
+            <h3>Maintenance Tracking</h3>
+
+            <p>
+                Record inspections, preventative maintenance,
+                repairs, and any equipment requiring attention.
+            </p>
+
+        </article>
+
+
+
+        <!-- Inventory -->
+
+        <article class="operation-card">
+
+            <div class="operation-icon">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+            </div>
+
+            <h3>Inventory Control</h3>
+
+            <p>
+                Monitor refreshments, cleaning supplies,
+                safety equipment, and onboard inventory.
+            </p>
+
+        </article>
+
+
+    </div>
 
 </section>
 
-<!-- ================= EXPERIENCES ================= -->
 
-<section class="experiences" id="experiences">
 
-<div class="container">
+<!-- =========================
+     INTERNAL NOTICE
+========================= -->
 
-<div class="section-title">
+<section id="notice" class="notice-section">
 
-<p>
-SIGNATURE EXPERIENCES
-</p>
+    <div class="notice-card">
 
-<h2>
-Choose Your Adventure
-</h2>
+        <div class="notice-icon">
 
-</div>
+            <i class="fa-solid fa-circle-info"></i>
 
-<div class="experience-grid">
+        </div>
 
-    <div class="experience-card">
+        <div class="notice-content">
 
-        <img src="images/paintbytheseapic1.png" alt="Paint & Sip">
-
-        <div class="experience-info">
-
-            <h3>Paint & Sip</h3>
+            <h2>Internal Operations Notice</h2>
 
             <p>
-                Paint unforgettable memories while sipping on delicious cocktails.
+
+                This portal is intended exclusively for
+                Aqualux captains and maintenance personnel.
+
             </p>
 
-            <a href="#">Discover More</a>
+            <p>
+
+                All operational information, maintenance records,
+                checklists, and vessel documentation are confidential
+                and should only be accessed by authorized staff.
+
+            </p>
 
         </div>
 
     </div>
 
-    <div class="experience-card">
-
-        <img src="images/aqualuxpic5.png" alt="Party Cruise">
-
-        <div class="experience-info">
-
-            <h3>Party Cruise</h3>
-
-            <p>
-                Enjoy a lively party atmosphere with music, drinks and crystal-clear waters.
-            </p>
-
-            <a href="#">Discover More</a>
-
-        </div>
-
-    </div>
-
-    <div class="experience-card">
-
-        <img src="images/aqualuxpic7.png" alt="Sunset Cruise">
-
-        <div class="experience-info">
-
-            <h3>Sunset Cruise</h3>
-
-            <p>
-                Relax and enjoy the fading sun beneath the golden Bahamian sky.
-            </p>
-
-            <a href="#">Discover More</a>
-
-        </div>
-
-    </div>
-
-    <div class="experience-card">
-
-        <img src="images/stingray.png" alt="Stingray Excursion">
-
-        <div class="experience-info">
-
-            <h3>Stingray Excursion</h3>
-
-            <p>
-                Swim alongside friendly southern stingrays in crystal-clear Bahamian waters.
-            </p>
-
-            <a href="#">Discover More</a>
-
-        </div>
-
-    </div>
-
-</div>
-<!-- ================= STORY ================= -->
-
-<section class="story">
-
-<div class="story-image">
-
-<img src="images/aqualuxpic2.png">
-
-</div>
-
-<div class="story-content">
-
-<p class="section-label">
-WHY AQUALUX
-</p>
-
-<h2>
-Created For Families,
-Couples & Explorers
-</h2>
-
-<p>
-
-Our experienced captains, Deckhands,
-comfortable boats, and personalized
-service make every trip safe,
-relaxing, and unforgettable.
-
-</p>
-
-<div class="features">
-
-<div>
-
-<i class="fa-solid fa-anchor"></i>
-
-<span>
-Excursions
-</span>
-
-</div>
-
-<div>
-
-<i class="fa-solid fa-water"></i>
-
-<span>
-Crystal Waters Tours
-</span>
-
-</div>
-
-<div>
-
-<i class="fa-solid fa-star"></i>
-
-<span>
-Premium Service
-</span>
-
-</div>
-
-</div>
-
-</div>
-
 </section>
 
-<section class="vessel">
 
-<div class="container">
 
-<div class="vessel-image">
+<!-- =========================
+     FOOTER
+========================= -->
 
-<img src="images/Torpedoray.png">
+<footer class="portal-footer">
 
-</div>
+    <p>
 
-<div class="vessel-details">
+        © 2026 Aqualux. Internal Captain & Maintenance Portal.
 
-<!-- Vessel Details Section -->
-<h2>Meet Our Vessel</h2>
-
-<ul>
-
-<li><strong>Name:</strong> Torpedo Ray</li>
-<li><strong>Capacity:</strong> 105 Guests</li>
-<li><strong>Registration:</strong> BS-XXXXX</li>
-<li><strong>Captain:</strong> Licensed</li>
-
-</ul>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= GALLERY ================= -->
-
-<section class="gallery" id="gallery">
-
-<div class="container">
-
-<div class="section-title">
-
-<p>
-MEMORIES
-</p>
-
-<h2>
-Explore The Bahamas
-</h2>
-
-</div>
-
-<div class="gallery-grid">
-
-<img src="images/aqualuxpic4.png">
-
-<img src="images/aqualuxpic9.png">
-
-<img src="images/aqualuxpic8.png">
-
-<img src="images/aqualuxpic3.png">
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= BOOKING ================= -->
-
-<section class="booking" id="booking">
-
-<div class="container">
-
-<div class="booking-box">
-
-<h2>
-Ready For Your Bahamas Adventure?
-</h2>
-
-<p>
-Reserve your private Aqualux experience today.
-</p>
-
-<a href="#contact">
-Request Availability
-</a>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- ================= CONTACT ================= -->
-
-<section class="contact" id="contact">
-
-<div class="container">
-
-<h2>
-Contact Aqualux
-</h2>
-
-<p>
-Nassau, Bahamas
-</p>
-
-<p>
-hello@aqualux.com
-</p>
-
-</div>
-
-</section>
-
-<footer>
-
-<p>
-© 2026 Aqualux. All Rights Reserved.
-</p>
+    </p>
 
 </footer>
+
+
+
+</main>
+
+
+
+<!-- =========================
+     MAIN JAVASCRIPT
+========================= -->
 
 <script src="script.js"></script>
 
 </body>
+
 </html>

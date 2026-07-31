@@ -1,128 +1,327 @@
 /* =====================================================
-   AQUALUX - SCRIPT.JS
+   AQUALUX CAPTAIN & MAINTENANCE PORTAL
+   script.js
 ===================================================== */
 
-/* =========================
-   ELEMENTS
-========================= */
 
-const header = document.querySelector(".header");
-const menu = document.querySelector(".menu");
-const navLinks = document.querySelector(".nav-links");
-const dropdown = document.querySelector(".dropdown");
-const dropBtn = document.querySelector(".dropbtn");
-const bookingButton = document.querySelector(".booking-card button");
-const heroImage = document.querySelector(".hero-image img");
+/* =====================================================
+   DOM ELEMENTS
+===================================================== */
 
+const modal = document.getElementById("vesselModal");
+
+const modalWindow = document.querySelector(".modal-window");
+
+const openButtons = document.querySelectorAll(".open-vessel-modal");
+
+const closeButton = document.querySelector(".close-modal");
+
+const dropdownButton = document.querySelector(".dropdown-button");
+
+const dropdown = document.querySelector(".nav-dropdown");
 const STAFF_PIN = "4728";
+
 let staffAuthorized = false;
 
-/* =========================
-   HEADER
-========================= */
 
-window.addEventListener("scroll", () => {
 
-    const logo = document.querySelector(".logo");
+/* =====================================================
+   MODAL FUNCTIONS
+===================================================== */
 
-    if (window.scrollY > 80) {
+function openModal() {
 
-        header.style.background = "rgba(255,255,255,.95)";
-        header.style.backdropFilter = "blur(12px)";
-        header.style.boxShadow = "0 10px 30px rgba(0,0,0,.08)";
+    modal.classList.add("active");
 
-        logo.style.color = "#06384b";
+    document.body.style.overflow = "hidden";
 
-        document.querySelectorAll(".nav-links > li > a").forEach(link=>{
-            link.style.color="#06384b";
-        });
+}
 
-        dropBtn.style.color="#06384b";
+function closeModal() {
 
-    } else {
+    modal.classList.remove("active");
 
-        header.style.background="transparent";
-        header.style.backdropFilter="none";
-        header.style.boxShadow="none";
+    document.body.style.overflow = "";
 
-        logo.style.color="white";
+}
 
-        document.querySelectorAll(".nav-links > li > a").forEach(link=>{
-            link.style.color="white";
-        });
 
-        dropBtn.style.color="white";
+
+/* =====================================================
+   OPEN BUTTONS
+===================================================== */
+
+openButtons.forEach(button => {
+
+    button.addEventListener("click", openModal);
+
+});
+
+
+
+/* =====================================================
+   CLOSE BUTTON
+===================================================== */
+
+closeButton.addEventListener("click", closeModal);
+
+
+
+/* =====================================================
+   CLICK OUTSIDE
+===================================================== */
+
+modal.addEventListener("click", function (event) {
+
+    if (event.target === modal) {
+
+        closeModal();
 
     }
 
 });
 
-/* =========================
-   MOBILE MENU
-========================= */
 
-menu.addEventListener("click",()=>{
 
-    navLinks.classList.toggle("active");
+/* =====================================================
+   ESC KEY
+===================================================== */
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key === "Escape" && modal.classList.contains("active")) {
+
+        closeModal();
+
+    }
 
 });
 
-/* =========================
-   STAFF DROPDOWN
-========================= */
 
-dropBtn.addEventListener("click",(e)=>{
+
+/* =====================================================
+   PREVENT MODAL FROM CLOSING
+===================================================== */
+
+modalWindow.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+});
+/* =====================================================
+   SMOOTH SCROLLING
+===================================================== */
+
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+    link.addEventListener("click", function (event) {
+
+        const targetId = this.getAttribute("href");
+
+        if (!targetId || targetId === "#") return;
+
+        const target = document.querySelector(targetId);
+
+        if (!target) return;
+
+        event.preventDefault();
+
+        target.scrollIntoView({
+
+            behavior: "smooth",
+            block: "start"
+
+        });
+
+    });
+
+});
+
+
+/* =====================================================
+   CLOSE DROPDOWN AFTER LINK CLICK
+===================================================== */
+
+/* =====================================================
+   PASSWORD PROTECTED DROPDOWN
+===================================================== */
+
+dropdownButton.addEventListener("click", function (e) {
 
     e.preventDefault();
+
     e.stopPropagation();
 
-    if(!staffAuthorized){
+    if (!staffAuthorized) {
 
-        const entered=prompt("Enter Staff PIN");
+        const entered = prompt("Enter Staff PIN");
 
-        if(entered!==STAFF_PIN){
+        if (entered !== STAFF_PIN) {
 
             alert("Incorrect PIN");
+
             return;
 
         }
 
-        staffAuthorized=true;
+        staffAuthorized = true;
 
     }
 
     dropdown.classList.toggle("open");
 
 });
+/* =====================================================
+   PROTECT STAFF LINKS
+===================================================== */
 
-/* =========================
-   SUBMENUS
-========================= */
+document.querySelectorAll(".dropdown-menu a, .submenu-btn").forEach(item => {
 
-document.querySelectorAll(".submenu-btn").forEach(button=>{
+    item.addEventListener("click", function(e){
 
-    button.addEventListener("click",(e)=>{
+        if(!staffAuthorized){
 
-        e.preventDefault();
-        e.stopPropagation();
+            e.preventDefault();
 
-        button.parentElement.classList.toggle("active");
+            e.stopPropagation();
+
+            const entered = prompt("Enter Staff PIN");
+
+            if(entered !== STAFF_PIN){
+
+                alert("Incorrect PIN");
+
+                return;
+
+            }
+
+            staffAuthorized = true;
+
+            dropdown.classList.add("open");
+
+        }
 
     });
 
 });
 
-/* =========================
-   CLOSE WHEN CLICKING AWAY
-========================= */
+/* =====================================================
+   SUBMENUS
+===================================================== */
 
-document.addEventListener("click",(e)=>{
+document.querySelectorAll(".submenu-btn").forEach(button => {
 
-    if(!dropdown.contains(e.target)){
+    button.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        e.stopPropagation();
+
+        this.parentElement.classList.toggle("active");
+
+    });
+
+});
+
+
+/* =====================================================
+   ACTIVE NAVIGATION LINK
+===================================================== */
+
+const sections = document.querySelectorAll("section[id]");
+
+const navLinks = document.querySelectorAll(".dropdown-menu a");
+
+function updateActiveNav() {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const top = section.offsetTop - 150;
+        const height = section.offsetHeight;
+
+        if (window.scrollY >= top &&
+            window.scrollY < top + height) {
+
+            current = section.id;
+
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === `#${current}`) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+}
+
+window.addEventListener("scroll", updateActiveNav);
+
+updateActiveNav();
+
+
+/* =====================================================
+   SCROLL REVEAL ANIMATION
+===================================================== */
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.classList.add("visible");
+
+        }
+
+    });
+
+}, {
+
+    threshold: 0.15
+
+});
+
+document.querySelectorAll(
+    ".dashboard-card, .spec-card, .operation-card, .notice-card"
+).forEach(card => {
+
+    card.classList.add("fade-up");
+
+    observer.observe(card);
+
+});
+
+
+/* =====================================================
+   PAGE LOADED
+===================================================== */
+
+window.addEventListener("load", () => {
+
+    document.body.classList.add("loaded");
+
+});
+/* =====================================================
+   CLOSE DROPDOWN WHEN CLICKING AWAY
+===================================================== */
+
+document.addEventListener("click", function (e) {
+
+    if (!dropdown.contains(e.target)) {
 
         dropdown.classList.remove("open");
 
-        document.querySelectorAll(".submenu").forEach(menu=>{
+        document.querySelectorAll(".submenu").forEach(menu => {
 
             menu.classList.remove("active");
 
@@ -132,108 +331,12 @@ document.addEventListener("click",(e)=>{
 
 });
 
-/* =========================
-   SMOOTH SCROLL
-========================= */
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+/* =====================================================
+   CONSOLE MESSAGE
+===================================================== */
 
-    anchor.addEventListener("click",function(e){
-
-        const target=document.querySelector(this.getAttribute("href"));
-
-        if(target){
-
-            e.preventDefault();
-
-            target.scrollIntoView({
-
-                behavior:"smooth"
-
-            });
-
-        }
-
-    });
-
-});
-
-/* =========================
-   HERO PARALLAX
-========================= */
-
-window.addEventListener("scroll",()=>{
-
-    heroImage.style.transform=
-        "translateY("+(window.scrollY*.25)+"px)";
-
-});
-
-/* =========================
-   BOOKING BUTTON
-========================= */
-
-bookingButton.addEventListener("click",()=>{
-
-    document.querySelector("#booking").scrollIntoView({
-
-        behavior:"smooth"
-
-    });
-
-});
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const revealItems=document.querySelectorAll(
-
-".intro-text,.intro-image,.experience-card,.story-image,.story-content,.gallery-grid img,.booking-box,.vessel-image,.vessel-details"
-
+console.log(
+    "%cAQUALUX Captain Portal Ready",
+    "color:#00b8ff;font-size:16px;font-weight:bold;"
 );
-
-const observer=new IntersectionObserver((entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("visible");
-
-}
-
-});
-
-},{threshold:.15});
-
-revealItems.forEach(item=>{
-
-item.classList.add("reveal");
-
-observer.observe(item);
-
-});
-
-const style=document.createElement("style");
-
-style.innerHTML=`
-
-.reveal{
-
-opacity:0;
-transform:translateY(60px);
-transition:1s;
-
-}
-
-.visible{
-
-opacity:1;
-transform:none;
-
-}
-
-`;
-
-document.head.appendChild(style);
